@@ -1,86 +1,99 @@
+# ================= COMPILER =================
 CC = gcc
-CFLAGS = -Wall -Iinclude
 
-# ===== ROOT (DR) =====
-DR_SRC = src
-DR_OBJ = obj
-DR_INC = include
-DR_BIN = bin
+# ================= FLAGS =================
+CFLAGS = -Wall -Wextra \
+         -Iinclude \
+         -I170868_Akash_DR_module1_T006/include \
+         -I170868_Akash_DR_module2_T006/include \
+         -I170868_Akash_DR_module3_T006/include \
+         -I170868_Akash_DR_module4_T006/include \
+         -I170868_Akash_DR_module5_T006/include \
+         -I170868_Akash_DR_module6_T006/include
 
-# ===== MODULE-1 =====
-MOD1_DIR = 170868_Akash_DR_module1_T006
-MOD1_SRC = $(MOD1_DIR)/src
-MOD1_OBJ = $(MOD1_DIR)/obj
-MOD1_INC = $(MOD1_DIR)/include
-MOD1_BIN = $(MOD1_DIR)/bin
+# ================= DIRECTORIES =================
+SRC = src
+OBJ = obj
+BIN = bin
 
-# ===== MODULE-2 =====
-MOD2_DIR = 170868_Akash_DR_module2_T006
-MOD2_SRC = $(MOD2_DIR)/src
-MOD2_OBJ = $(MOD2_DIR)/obj
-MOD2_INC = $(MOD2_DIR)/include
-MOD2_BIN = $(MOD2_DIR)/bin
+MOD1 = 170868_Akash_DR_module1_T006
+MOD2 = 170868_Akash_DR_module2_T006
+MOD3 = 170868_Akash_DR_module3_T006
+MOD4 = 170868_Akash_DR_module4_T006
+MOD5 = 170868_Akash_DR_module5_T006
+MOD6 = 170868_Akash_DR_module6_T006
 
-# ===== Final Executable (choose where you want it) =====
-EXECUTABLE = $(MOD1_BIN)/target
+# ================= MAIN =================
+MAIN_SRC = $(SRC)/main.c $(SRC)/switch.c
+MAIN_OBJ = $(OBJ)/main.o $(OBJ)/switch.o
 
-# ===== Source Files =====
-DR_SOURCES   = $(wildcard $(DR_SRC)/*.c)
-MOD1_SOURCES = $(wildcard $(MOD1_SRC)/*.c)
-MOD2_SOURCES = $(wildcard $(MOD2_SRC)/*.c)
+# ================= MODULE SOURCES =================
+MOD1_SRC = $(wildcard $(MOD1)/src/*.c)
+MOD2_SRC = $(wildcard $(MOD2)/src/*.c)
+MOD3_SRC = $(wildcard $(MOD3)/src/*.c)
+MOD4_SRC = $(wildcard $(MOD4)/src/*.c)
+MOD5_SRC = $(wildcard $(MOD5)/src/*.c)
+MOD6_SRC = $(wildcard $(MOD6)/src/*.c)
 
-# ===== Object Files =====
-DR_OBJECTS   = $(patsubst $(DR_SRC)/%.c,$(DR_OBJ)/%.o,$(DR_SOURCES))
-MOD1_OBJECTS = $(patsubst $(MOD1_SRC)/%.c,$(MOD1_OBJ)/%.o,$(MOD1_SOURCES))
-MOD2_OBJECTS = $(patsubst $(MOD2_SRC)/%.c,$(MOD2_OBJ)/%.o,$(MOD2_SOURCES))
+# ================= MODULE OBJECTS =================
+MOD1_OBJ = $(patsubst $(MOD1)/src/%.c,$(MOD1)/obj/%.o,$(MOD1_SRC))
+MOD2_OBJ = $(patsubst $(MOD2)/src/%.c,$(MOD2)/obj/%.o,$(MOD2_SRC))
+MOD3_OBJ = $(patsubst $(MOD3)/src/%.c,$(MOD3)/obj/%.o,$(MOD3_SRC))
+MOD4_OBJ = $(patsubst $(MOD4)/src/%.c,$(MOD4)/obj/%.o,$(MOD4_SRC))
+MOD5_OBJ = $(patsubst $(MOD5)/src/%.c,$(MOD5)/obj/%.o,$(MOD5_SRC))
+MOD6_OBJ = $(patsubst $(MOD6)/src/%.c,$(MOD6)/obj/%.o,$(MOD6_SRC))
 
-OBJECTS = $(DR_OBJECTS) $(MOD1_OBJECTS) $(MOD2_OBJECTS)
+# ================= TARGET =================
+TARGET = $(BIN)/app
 
-# ===== Default Target =====
-all: build
+# ================= DEFAULT =================
+all: $(TARGET)
 
-build: $(EXECUTABLE)
+# ================= LINKING =================
+$(TARGET): $(MAIN_OBJ) $(MOD1_OBJ) $(MOD2_OBJ) $(MOD3_OBJ) $(MOD4_OBJ) $(MOD5_OBJ) $(MOD6_OBJ)
+        @mkdir -p $(BIN)
+        $(CC) $^ -o $@
 
-# ===== Linking =====
-$(EXECUTABLE): $(OBJECTS) | $(MOD1_BIN)
-	@$(CC) $(CFLAGS) $^ -o $@
+# ================= COMPILE MAIN =================
+$(OBJ)/%.o: $(SRC)/%.c
+        @mkdir -p $(OBJ)
+        $(CC) $(CFLAGS) -c $< -o $@
 
-# ===== Compile ROOT =====
-$(DR_OBJ)/%.o: $(DR_SRC)/%.c | $(DR_OBJ)
-	@$(CC) $(CFLAGS) -I$(DR_INC) -c $< -o $@
+# ================= COMPILE MODULES =================
+$(MOD1)/obj/%.o: $(MOD1)/src/%.c
+        @mkdir -p $(MOD1)/obj
+        $(CC) $(CFLAGS) -c $< -o $@
 
-# ===== Compile MODULE-1 =====
-$(MOD1_OBJ)/%.o: $(MOD1_SRC)/%.c | $(MOD1_OBJ)
-	@$(CC) $(CFLAGS) -I$(MOD1_INC) -c $< -o $@
+$(MOD2)/obj/%.o: $(MOD2)/src/%.c
+        @mkdir -p $(MOD2)/obj
+        $(CC) $(CFLAGS) -c $< -o $@
 
-# ===== Cecho $(pwd)o;
-# compile MODULE-2 =====
-$(MOD2_OBJ)/%.o: $(MOD2_SRC)/%.c | $(MOD2_OBJ)
-	@$(CC) $(CFLAGS) -I$(MOD2_INC) -c $< -o $@
+$(MOD3)/obj/%.o: $(MOD3)/src/%.c
+        @mkdir -p $(MOD3)/obj
+        $(CC) $(CFLAGS) -c $< -o $@
 
-# ===== Create Directories =====
-$(DR_OBJ):
-	mkdir -p $(DR_OBJ)
+$(MOD4)/obj/%.o: $(MOD4)/src/%.c
+        @mkdir -p $(MOD4)/obj
+        $(CC) $(CFLAGS) -c $< -o $@
 
-$(MOD1_OBJ):
-	mkdir -p $(MOD1_OBJ)
+$(MOD5)/obj/%.o: $(MOD5)/src/%.c
+        @mkdir -p $(MOD5)/obj
+        $(CC) $(CFLAGS) -c $< -o $@
 
-$(MOD2_OBJ):
-	mkdir -p $(MOD2_OBJ)
+$(MOD6)/obj/%.o: $(MOD6)/src/%.c
+        @mkdir -p $(MOD6)/obj
+        $(CC) $(CFLAGS) -c $< -o $@
 
-$(MOD1_BIN):
-	mkdir -p $(MOD1_BIN)
-
-# ===== Run =====
-execute:
-	./$(EXECUTABLE)
-
-# ===== Clean =====
+# ================= CLEAN =================
 clean:
-	rm -rf $(DR_OBJ)/*.o
-	rm -rf $(MOD1_OBJ)/*.o
-	rm -rf $(MOD2_OBJ)/*.o
-	rm -rf $(EXECUTABLE)
+	rm -rf $(MOD1)/obj/*.o
+	rm -rf $(MOD2)/obj/*.o
+	rm -rf $(MOD3)/obj/*.o
+	rm -rf $(MOD4)/obj/*.o
+	rm -rf $(MOD5)/obj/*.o
+	rm -rf $(MOD6)/obj/*.o
 
-.PHONY: all build execute clean
+# ================= REBUILD =================
+re: clean all
 
+.PHONY: all clean re
