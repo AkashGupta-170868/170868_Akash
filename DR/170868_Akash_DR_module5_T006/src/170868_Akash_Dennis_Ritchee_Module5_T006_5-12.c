@@ -39,14 +39,13 @@ void test_entab(int argc, char *argv[]) {
             space_count++;
             col++;
 
-            // Check tab stop
+           
             if (col >= m && ((col - m) % n == 0)) {
-                putchar('#');   // 👈 replaced \t with '#'
+                putchar('#');  
                 space_count = 0;
             }
         } 
         else {
-            // Print remaining spaces
             while (space_count > 0) {
                 putchar(' ');
                 space_count--;

@@ -3,7 +3,7 @@
  *created at : 24-02-2026
  *modifid at : 25-02-2026
  */
-/*#include <stdint.h>
+#include <stdint.h>
 #include <stdio.h>
 
 int binarySearch(int arr[], int size, int target);
@@ -62,4 +62,4 @@ int binarySearch(int arr[], int size, int target)
     }
 
     return -1;
-}*/
+}

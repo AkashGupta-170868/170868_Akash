@@ -1,6 +1,9 @@
 /*
- * Descriptions:  As written, getint treats a + or - not followed by a digit as a valid representation of zero. Fix it to push such a character back on the input. 
- 
+ * Description:
+ * As written, getint treats a + or - not followed by a digit
+ * as a valid representation of zero. Fixed to push such
+ * character back on the input.
+ *
  * Author : Akash Gupta
  * Created at : 27-03-2026
  * Modified at : 27-03-2026
@@ -8,96 +11,91 @@
 
 #include <stdio.h>
 #include <ctype.h>
-#include <stdint.h>   
+#include <stdint.h>
 
-#define size 100
-char buffer[size];
-int32_t idx = 0;
+#define SIZE 100
 
+static char buffer[SIZE];
+static int32_t idx = 0;
 
 /*
- * function name : getch();
- * Descriptions: it is a function used to read one character at a time from input
- * 
- Author : Akash Gupta
- * Created at : 27-03-2026
- * Modified at : 27-03-2026
+ * Function Name : getch()
+ * Description   : Reads one character at a time from input
  */
-int32_t getch(void) {
+static int32_t getch(void)
+{
     return (idx > 0) ? buffer[--idx] : getchar();
 }
+
 /*
- * function name : ungetch();                                      * Descriptions: It stores the character in a buffer
- *
-  Author : Akash Gupta
- * Created at : 27-03-2026
- * Modified at : 27-03-2026
+ * Function Name : ungetch()
+ * Description   : Stores character in buffer
  */
-void ungetch(int32_t num) {
-    if (idx < size) {
+static void ungetch(int32_t num)
+{
+    if (idx < SIZE)
         buffer[idx++] = num;
-    } else {
-        printf("stack is overflow\n");
-    }
+    else
+        printf("Stack overflow\n");
 }
 
 /*
- * function name : getint();                                      * Descriptions: convert into integer and return it else zero*
- Author : Akash Gupta
- * Created at : 27-03-2026
- * Modified at : 27-03-2026
+ * Function Name : getint()
+ * Description   : Converts input into integer and returns it
  */
-int32_t getint(int32_t *pnum) {
-    int32_t c;
+static int32_t getint(int32_t *pnum)
+{
+    int32_t character;
 
-    while (isspace(c = getch()))
+    while (isspace(character = getch()))
         ;
 
-    if (!isdigit(c) && c != EOF && c != '+' && c != '-') {
-        ungetch(c);
+    if (!isdigit(character) && character != EOF &&
+        character != '+' && character != '-')
+    {
+        ungetch(character);
         return 0;
     }
 
-    int32_t sign = (c == '-') ? -1 : 1;
+    int32_t sign = (character == '-') ? -1 : 1;
 
-    // Check next character after sign
-    if (c == '+' || c == '-') {
-        int32_t next = getch();
+    if (character == '+' || character == '-')
+    {
+        int32_t nextChar = getch();
 
-        if (!isdigit(next)) {
-            ungetch(next);
-            ungetch(c);
+        if (!isdigit(nextChar))
+        {
+            ungetch(nextChar);
+            ungetch(character);
             return 0;
         }
 
-        c = next;
+        character = nextChar;
     }
 
-    for (*pnum = 0; isdigit(c); c = getch()) {
-        *pnum = 10 * (*pnum) + (c - '0');
-    }
+    for (*pnum = 0; isdigit(character); character = getch())
+        *pnum = 10 * (*pnum) + (character - '0');
 
-    *pnum = (*pnum) * sign;
+    *pnum *= sign;
 
-    if (c != EOF) {
-        ungetch(c);
-    }
+    if (character != EOF)
+        ungetch(character);
 
-    return c;
+    return character;
 }
 
-int test_dr51() {
-    int32_t n, status;
+int32_t test_dr51(void)
+{
+    int32_t number, status;
 
     printf("Enter input: ");
 
-    status = getint(&n);
+    status = getint(&number);
 
-    if (status == 0) {
+    if (status == 0)
         printf("Not a valid number\n");
-    } else {
-        printf("Number = %d\n", n);
-    }
+    else
+        printf("Number = %d\n", number);
 
     return 0;
 }

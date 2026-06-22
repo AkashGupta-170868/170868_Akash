@@ -1,28 +1,34 @@
 /*
- * Descriptions: In a two's complement number representation, our version of itoa does not
-handle the largest negative number, that is, the value of n equal to -(2wordsize-1). Explain why not.
-Modify it to print that value correctly, regardless of the machine on which it runs
- * Author : Akash Gupta
- * Created at : 26-02-2026
- * Modified at : 26-02-2026
- */
-
+description : In a two's complement number representation, our version of itoa
+does not handle the largest negative number. Modify it to print that value
+correctly regardless of machine.
+Author:Akash Gupta
+created At:26-02-2026
+modified at:26-02-2026
+*/
 
 #include <stdio.h>
 #include <stdint.h>
 #include <limits.h>
 
-/* reverse string */
-void reverse(char s[])
+/*
+description : reverse string
+Author:Akash Gupta
+created At:26-02-2026
+modified at:26-02-2026
+*/
+static void reverse(char s[])
 {
     int i = 0, j = 0;
     char temp;
 
     while (s[j] != '\0')
         j++;
+
     j--;
 
-    while (i < j) {
+    while (i < j)
+    {
         temp = s[i];
         s[i] = s[j];
         s[j] = temp;
@@ -31,13 +37,19 @@ void reverse(char s[])
     }
 }
 
-/* safe itoa for int32_t */
-void itoa(int32_t n, char s[])
+/*
+description : safe itoa for int32_t
+Author:Akash Gupta
+created At:26-02-2026
+modified at:26-02-2026
+*/
+static void itoa(int32_t n, char s[])
 {
     int i = 0;
     int32_t sign = n;
 
-    do {
+    do
+    {
         int32_t digit = n % 10;
 
         if (digit < 0)
@@ -55,16 +67,22 @@ void itoa(int32_t n, char s[])
     reverse(s);
 }
 
-int itoa_t()
+/*
+description : convert integer to string
+Author:Akash Gupta
+created At:26-02-2026
+modified at:26-02-2026
+*/
+int32_t itoa_t(void)
 {
-    int64_t input;     
+    int64_t input;
     char str[50];
 
     printf("Enter value of x: ");
     scanf("%lld", &input);
 
-    /* Range check for 32-bit signed integer */
-    if (input < INT32_MIN || input > INT32_MAX) {
+    if (input < INT32_MIN || input > INT32_MAX)
+    {
         printf("Entered number is not in range\n");
         return 0;
     }

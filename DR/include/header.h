@@ -8,5 +8,5 @@
 #ifndef HEADER_H
 #define HEADER_H
 int switch1();
-
+void expr(int argc, char *argv[]);
 #endif

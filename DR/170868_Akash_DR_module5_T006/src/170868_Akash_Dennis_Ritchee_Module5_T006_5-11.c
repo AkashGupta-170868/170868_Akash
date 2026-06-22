@@ -72,7 +72,11 @@ void entabCLI(int argc, char *argv[])
     }
 }
 
-// DETAB FUNCTION
+/* function name : detabCLI();
+ * Descriptions: this function takes command line argument like de and threshold value 2 then convert tap to 2 space.
+ * Author : Akash Gupta
+ * Created at : 03-04-2026
+ */
 void detabCLI(int argc, char *argv[])
 {
     int ch;
@@ -112,7 +116,11 @@ void detabCLI(int argc, char *argv[])
     }
 }
 
-
+/* function name : ende_test();
+ * Descriptions: this function takes command line argument like de and threshold value 2 then convert tap to 2 space.
+ * Author : Akash Gupta
+ * Created at : 03-04-2026
+ */
 int ende_test(int argc, char *argv[])
 {
     if (argc < 2) {

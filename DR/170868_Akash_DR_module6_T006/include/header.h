@@ -9,10 +9,9 @@
 #ifndef HEADER_H
 #define HEADER_H
 
-void  binarySearchTest();
-int escape_t();
-int itoa_t();
-int itob_t();
-int itoa_width_t(void);
+
+
+int getword_main();
+
 
 #endif

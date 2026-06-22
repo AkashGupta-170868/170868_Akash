@@ -38,7 +38,11 @@ void dirdcl(void);
 void recover(void);
 int getch(void);
 void ungetch(int);
-
+/* function name : calling();
+ * Descriptions: this function takes command line argument like de and threshold value 2 then convert tap to 2 space.
+ * Author : Akash Gupta
+ * Created at : 03-04-2026
+ */
 int calling()
 {
     while (1) {
@@ -85,7 +89,11 @@ void dcl(void)
     while (ns-- > 0)
         strcat(out, " pointer to");
 }
-
+/* function name : dirdcl();
+ * Descriptions: this function takes command line argument like de and threshold value 2 then convert tap to 2 space.
+ * Author : Akash Gupta
+ * Created at : 03-04-2026
+ */
 void dirdcl(void)
 {
     int type;
@@ -142,7 +150,11 @@ void dirdcl(void)
 
     tokentype = type;
 }
-
+/* function name : gettoken();
+ * Descriptions: this function takes command line argument like de and threshold value 2 then convert tap to 2 space.
+ * Author : Akash Gupta
+ * Created at : 03-04-2026
+ */
 int gettoken(void)
 {
     int c;

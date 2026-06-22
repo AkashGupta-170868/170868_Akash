@@ -19,7 +19,11 @@ static char *typequantifier[] = {"const","volatile","restrict"};
 static char *typeofdata[] = {"int","float","char","double","long","void"};
 
 int buf = EOF;
-
+/* function name : read_char();
+ * Descriptions: this function takes command line argument like de and threshold value 2 then convert tap to 2 space.
+ * Author : Akash Gupta
+ * Created at : 03-04-2026
+ */
 int read_char(void) {
 	int c;
 	if (buf != EOF) {
@@ -39,7 +43,11 @@ void error_recovery(void) {
 	while ((c = read_char()) != '\n' && c != EOF)
 		;
 }
-
+/* function name : get_token();
+ * Descriptions: this function takes command line argument like de and threshold value 2 then convert tap to 2 space.
+ * Author : Akash Gupta
+ * Created at : 03-04-2026
+ */
 int16_t get_token(void) {
 	int ch;
 	char *p = token;

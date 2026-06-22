@@ -12,15 +12,15 @@ int16_t lower(int16_t charcter);
 
 int16_t lower_t(void)
 {
-    int16_t charcter;
-    
-    while((charcter=getchar())!=EOF)
-    {
-        putchar(lower(charcter));
-    }
+	int16_t charcter;
+
+	while((charcter=getchar())!=EOF)
+	{
+		putchar(lower(charcter));
+	}
 }
 
 int16_t lower(int16_t charcter)
 {
-    return charcter>='A' && charcter<='Z'? charcter+'a'-'A':charcter;
+	return charcter>='A' && charcter<='Z'? charcter+'a'-'A':charcter;
 }

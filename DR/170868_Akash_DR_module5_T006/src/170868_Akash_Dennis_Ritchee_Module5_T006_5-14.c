@@ -15,7 +15,8 @@ void bubble_sort(void *v[], int32_t n, int32_t (*comp)(void *, void *), int32_t 
 int32_t numcmp(char *, char *);
 void swap(void *v[], int32_t, int32_t);
 
-/* * function name : nr() * Description : main driver function with -n and -r support */
+/* * function name : nr() 
+* Description : main driver function with -n and -r support */
 int nr(int argc, char *argv[])
 {
     int32_t nlines;
@@ -56,7 +57,8 @@ int nr(int argc, char *argv[])
         return 1;
     }
 }
-/* * function name : bubble_sort() * Description : Bubble sort with reverse logic */
+/* * function name : bubble_sort() 
+* Description : Bubble sort with reverse logic */
 void bubble_sort(void *v[], int32_t n, int32_t (*comp)(void *, void *), int32_t reverse)
 {
     int32_t i, j;
@@ -79,7 +81,8 @@ void bubble_sort(void *v[], int32_t n, int32_t (*comp)(void *, void *), int32_t 
     }
 }
 
-/* * function name : numcmp() * Description : compare numbers numerically */
+/* * function name : numcmp() 
+* Description : compare numbers numerically */
 int32_t numcmp(char *s1, char *s2)
 {
     double v1 = atof(s1);
@@ -90,7 +93,8 @@ int32_t numcmp(char *s1, char *s2)
     return 0;
 }
 
-/* * function name : swap() * Description : swap two elements */
+/* * function name : swap() 
+* Description : swap two elements */
 void swap(void *v[], int32_t i, int32_t j)
 {
     void *temp = v[i];
@@ -98,7 +102,8 @@ void swap(void *v[], int32_t i, int32_t j)
     v[j] = temp;
 }
 
-/* * function name : readlines() * Description : read input lines */
+/* * function name : readlines() 
+* Description : read input lines */
 int32_t readlines(char *lineptr[], int32_t maxlines)
 {
     int32_t len, nlines = 0;
@@ -118,7 +123,8 @@ int32_t readlines(char *lineptr[], int32_t maxlines)
     return nlines;
 }
 
-/* * function name : writelines() * Description : print output lines */
+/* * function name : writelines() 
+* Description : print output lines */
 void writelines(char *lineptr[], int32_t nlines)
 {
     for (int32_t i = 0; i < nlines; i++)
